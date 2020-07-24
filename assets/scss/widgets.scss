@@ -1,0 +1,60 @@
+.size {
+    width: 500px;
+    align-self: center;
+}
+
+.cities {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.weatherCard {
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.weather {
+    display: flex;
+    flex-direction: row;
+}
+
+.data {
+    color: #4e555b;
+    font-size: 1.5em;
+}
+
+.refresh {
+    color: yellow;
+    &:hover {
+        color: yellow;
+    }
+}
+
+.title {
+    font-size: 2em;
+    text-transform: uppercase;
+}
+
+.active {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
+.box {
+    text-align: center;
+    align-self: center;
+}
+
+@media screen and (max-width: 768px) {
+    .weather {
+        flex-direction: column;
+    }
+    .weatherCard {
+        width: 80vw;
+    }
+}

@@ -20,11 +20,33 @@ class WeatherService
      */
     public function getWeather()
     {
-        $response = $this->client->request('GET', 'https://api.openweathermap.org/data/2.5/weather?lon=1.44&lat=43.6&appid=' . $this->apiKey);
+        /* API call for Bordeaux weather conditions*/
+
+        $response_bordeaux = $this->client->request('GET', 'https://api.openweathermap.org/data/2.5/weather?lon=-0.58&lat=44.84&appid=' . $this->apiKey);
+        $bordeaux_weather_data = json_decode($response_bordeaux->getContent(), true);
+
+        /* conversion of wind speed from m/s to km/h */
+        $bordeaux_wind = round(($bordeaux_weather_data['wind']['speed'] * 3.6), 1, PHP_ROUND_HALF_UP);
+
+        /* conversion of temperature from Kelvin to Celsius degrees */
+        $bordeaux_temperature = round(($bordeaux_weather_data['main']['temp'] - 273.15), 1, PHP_ROUND_HALF_UP);
+
+        /* API call for Toulouse weather conditions*/
+
+        $response_toulouse = $this->client->request('GET', 'https://api.openweathermap.org/data/2.5/weather?lon=1.44&lat=43.6&appid=' . $this->apiKey);
+        $toulouse_weather_data = json_decode($response_toulouse->getContent(), true);
+
+        /* conversion of wind speed from m/s to km/h */
+        $toulouse_wind = round(($toulouse_weather_data['wind']['speed'] * 3.6), 1, PHP_ROUND_HALF_UP);
+
+        /* conversion of temperature from Kelvin to Celsius degrees */
+        $toulouse_temperature = round(($toulouse_weather_data['main']['temp'] - 273.15), 1, PHP_ROUND_HALF_UP);
 
         return [
-            'temperature' => '20', // en °C
-            'vent' => '17', // en km/H
+            'bordeaux_temperature' => $bordeaux_temperature,
+            'bordeaux_wind' => $bordeaux_wind,
+            'toulouse_temperature' => $toulouse_temperature,
+            'toulouse_wind' => $toulouse_wind,
         ];
     }
 }

@@ -6,7 +6,45 @@
 
 {% block body %}
 
-    <h1>Bienvenue sur la page Météo</h1>
+<div class="view container-fluid mt-5">
+    <div class=" d-flex flex-column align-items-center">
 
+        <div class="justify-content-center">
+            <h1 class="text-center mb-5 p-2" id="page">Bienvenue sur la page Météo</h1>
+            <div class="cities mb-2">
+                <button type="button" class="btn btn-warning btn-lg mr-3 city" id="bordeaux" autofocus>Bordeaux</button>
+                <button type="button" class="btn btn-warning btn-lg ml-3 city" id="toulouse">Toulouse</button>
+            </div>
+
+        </div>
+
+        <div class="weatherCard justify-content-center">
+            <div class="weather">
+                <img class="size col-lg-5 col-md-5" src="https://i.pinimg.com/originals/45/e5/fd/45e5fdde1d15ca2a09c44bce5cac35a3.jpg" alt="logo">
+                <div class="box d-flex flex-column col-lg-7 col-md-7">
+                    <p class="title">temperature</p>
+                    <p class="data active" id="bortemp">{{ weather.bordeaux_temperature }} °C</p>
+                    <p class="hidden" id="toultemp">{{ weather.toulouse_temperature }} °C</p>
+                </div>
+            </div>
+            <div class="weather">
+                <img class="size col-lg-5 col-md-5 col-sm-8" src="https://thumbs.gfycat.com/WarmheartedIdioticDromaeosaur-size_restricted.gif" alt="logo">
+                <div class="box d-flex flex-column col-lg-7 col-md-7 col-sm-4">
+                    <p class="title">vent</p>
+                    <p class="data active" id="borwind">{{ weather.bordeaux_wind }} km/h</p>
+                    <p class="hidden" id="toulwind">{{ weather.toulouse_wind }} km/h</p>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <a href="" class="d-flex justify-content-center mt-3 mb-1">
+                <button type="button" class="btn btn-dark refresh">Actualiser</button>
+            </a>
+            <p>Dernière actualisation à {{ date }}</p>
+        </div>
+
+    </div>
+</div>
 
 {% endblock %}
